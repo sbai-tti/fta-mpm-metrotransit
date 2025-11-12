@@ -1,0 +1,82 @@
+# ------------------------------
+# Python + Data Analytics Project
+# ------------------------------
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Environment files
+*.env
+*.env.*
+
+# Logs and temp files
+logs/
+*.log
+*.tmp
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# ------------------------------
+# Data files
+# ------------------------------
+# Ignore all datasets globally
+*.csv
+*.xlsx
+*.parquet
+
+# Ignore all datasets inside /data but keep the folder itself
+data/*
+# ...but keep the folder itself (via a placeholder)
+!data/.gitkeep
+
+# You can optionally keep small reference files like:
+# !data/sample.csv
+# !data/schema.json
+
+# ------------------------------
+# Project build artifacts
+# ------------------------------
+dist/
+build/
+*.egg-info/
+
+# ------------------------------
+# Cache or temp output
+# ------------------------------
+*.parquet
+*.feather
+*.pkl
+*.h5
+*.db
+*.sqlite
+*.zip
+*.gz
+*.tar
+*.jsonl
+
+# ------------------------------
+# Reports and outputs
+# ------------------------------
+outputs/
+reports/
+
+# ------------------------------
+# OS junk and editor backups
+# ------------------------------
+*.bak
+*.swp
