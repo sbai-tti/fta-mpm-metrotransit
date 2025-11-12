@@ -12,6 +12,11 @@ spark.sparkContext.setLogLevel("ERROR")
 # Define base data directory
 base_dir = "data/raw"
 
+# Define output paths for the three datasets
+output_dir = "data/examples"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
 vehicles_path = os.path.join(base_dir, "vehicles.parquet")
 vehicle_train_cars_path = os.path.join(base_dir, "vehicle_train_cars.parquet")
 train_cars_path = os.path.join(base_dir, "train_cars.parquet")
@@ -44,8 +49,8 @@ def read_parquet_to_df(path, engine="spark", limit=None):
         raise ValueError(f"unsupported engine: {engine}")
 
 df_vehicles = read_parquet_to_df(vehicles_path, engine="pandas", limit=None)
-df_vehicles.to_csv(f"vehicles_example.csv", index=False)
+df_vehicles.to_csv(os.path.join(output_dir, "vehicles_example.csv"), index=False)
 df_vehicle_train_cars = read_parquet_to_df(vehicle_train_cars_path, engine="pandas", limit=None)
-df_vehicle_train_cars.to_csv(f"vehicle_train_cars_example.csv", index=False)
+df_vehicle_train_cars.to_csv(os.path.join(output_dir, "vehicle_train_cars_example.csv"), index=False)
 df_train_cars = read_parquet_to_df(train_cars_path, engine="pandas", limit=None)
-df_train_cars.to_csv(f"train_cars_example.csv", index=False)
+df_train_cars.to_csv(os.path.join(output_dir, "train_cars_example.csv"), index=False)

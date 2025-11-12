@@ -14,6 +14,12 @@ base_dir = "data/raw"
 stop_visits_lrt_dir = os.path.join(base_dir, "stop_visits/lrt")
 stop_visits_tm_dir = os.path.join(base_dir, "stop_visits/tm")
 
+# Define output paths for the three datasets
+output_dir = "data/examples"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+
 EXAMPLE_DATE = "2025-01-01"
 
 lrt_path = os.path.join(stop_visits_lrt_dir, f"service_date={EXAMPLE_DATE}", "*.parquet")
@@ -48,5 +54,5 @@ def read_parquet_to_df(path, engine="spark", limit=None):
 
 df_lrt = read_parquet_to_df(lrt_path, engine="pandas", limit=None)
 df_tm = read_parquet_to_df(tm_path, engine="pandas", limit=None)
-df_lrt.to_csv(f"stop_visits_lrt_example_{EXAMPLE_DATE}.csv", index=False)
-df_tm.to_csv(f"stop_visits_tm_example_{EXAMPLE_DATE}.csv", index=False)
+df_lrt.to_csv(os.path.join(output_dir, f"stop_visits_lrt_example_{EXAMPLE_DATE}.csv"), index=False)
+df_tm.to_csv(os.path.join(output_dir, f"stop_visits_tm_example_{EXAMPLE_DATE}.csv"), index=False)

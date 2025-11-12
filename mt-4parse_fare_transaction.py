@@ -13,6 +13,11 @@ spark.sparkContext.setLogLevel("ERROR")
 base_dir = "data/raw"
 fare_transactions_dir = os.path.join(base_dir, "fare_transactions/cubic")
 
+# Define output paths for the three datasets
+output_dir = "data/examples"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
 EXAMPLE_DATE = "2025-01-01"
 
 transac_path = os.path.join(fare_transactions_dir, f"service_date={EXAMPLE_DATE}", "*.parquet")
@@ -45,4 +50,4 @@ def read_parquet_to_df(path, engine="spark", limit=None):
         raise ValueError(f"unsupported engine: {engine}")
 
 df = read_parquet_to_df(transac_path, engine="pandas", limit=None)
-df.to_csv(f"fare_transactions_example_{EXAMPLE_DATE}.csv", index=False)
+df.to_csv(os.path.join(output_dir, f"fare_transactions_example_{EXAMPLE_DATE}.csv"), index=False)

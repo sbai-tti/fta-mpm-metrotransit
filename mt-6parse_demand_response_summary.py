@@ -14,6 +14,13 @@ base_dir = "data/raw"
 
 demand_response_summary_path = os.path.join(base_dir, "demand_response_summary.parquet")
 
+
+# Define output paths for the three datasets
+output_dir = "data/examples"
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+
 def read_parquet_to_df(path, engine="spark", limit=None):
     """
     Read parquet files (supports Spark, pandas, polars).
@@ -42,4 +49,4 @@ def read_parquet_to_df(path, engine="spark", limit=None):
         raise ValueError(f"unsupported engine: {engine}")
 
 df_demand_response_summary = read_parquet_to_df(demand_response_summary_path, engine="pandas", limit=None)
-df_demand_response_summary.to_csv(f"demand_response_summary_example.csv", index=False)
+df_demand_response_summary.to_csv(os.path.join(output_dir, "demand_response_summary_example.csv"), index=False)
